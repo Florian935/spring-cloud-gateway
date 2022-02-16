@@ -13,6 +13,5 @@ public class Productv2Controller {
     Mono<String> greetingv2() {
 
         return Mono.just("Hello from product-service [v2]");
-
     }
 }

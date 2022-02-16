@@ -11,7 +11,7 @@ public class OrderController {
 
     @GetMapping("/message")
     Mono<String> greeting() {
-
+        System.out.println("PASSAGE");
         return Mono.just("Hello from order-service");
     }
 }
