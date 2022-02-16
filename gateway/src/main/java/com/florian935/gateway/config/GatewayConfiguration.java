@@ -18,12 +18,19 @@ public class GatewayConfiguration {
                                 .path("/api/v1.0/products/**")
                                 .or()
                                 .path("/api/v2.0/products/**")
-                                .filters(gatewayFilterSpec -> gatewayFilterSpec.filter(jwtFilter.apply(new JwtFilter.Config())))
+                                .filters(gatewayFilterSpec ->
+                                        gatewayFilterSpec
+                                                .filter(jwtFilter.apply(new JwtFilter.Config(
+                                                        "post-filter-header-product",
+                                                        "post-filter-value-product"))))
                                 .uri("http://localhost:8081"))
                 .route("orderModule", predicateSpec ->
                         predicateSpec
                                 .path("/api/v1.0/orders/**")
-                                .filters(gatewayFilterSpec -> gatewayFilterSpec.filter(jwtFilter.apply(new JwtFilter.Config())))
+                                .filters(gatewayFilterSpec ->
+                                        gatewayFilterSpec.filter(jwtFilter.apply(new JwtFilter.Config(
+                                                "post-filter-header-order",
+                                                "post-filter-value-order"))))
                                 .uri("http://localhost:8082"))
                 .build();
     }
